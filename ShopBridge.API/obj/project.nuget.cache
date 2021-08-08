@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dML1Pea9XEgCdKwfOskWACXe0GAbW78HAoTv9ZchhXCly7/lsFoxU1tBaphHZvq4sc/tuhMiayS1pbPpk1mqTg==",
+  "dgSpecHash": "TplhXGoveqQmkQJDR9hrW6h8juUu1kmSjpcXBue0qLRu7fqcyN8U8Mu84GGZ24lmNxxMTeP6ZxFRbD5zY1o7Wg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chauhkir\\source\\repos\\ShopBridge\\ShopBridge.Service.WebAPI\\ShopBridge.API\\ShopBridge.API.csproj",
+  "projectFilePath": "C:\\Users\\chauhkir\\source\\repos\\New folder\\ShopBridge-Net5API\\ShopBridge.API\\ShopBridge.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chauhkir\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\chauhkir\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
