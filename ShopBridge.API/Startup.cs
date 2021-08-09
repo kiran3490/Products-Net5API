@@ -56,6 +56,12 @@ namespace ShopBridge.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ShopBridge.API v1"));
             }
 
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ShopBridgeDataContext>();
+                context.Database.Migrate();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
