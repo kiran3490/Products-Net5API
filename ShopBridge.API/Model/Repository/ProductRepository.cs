@@ -33,12 +33,15 @@ namespace ShopBridge.API.Model.Repository
                 productRequest = new ProductRequest();
 
             //default value for limit 10 and offeset 0
-            if (productRequest.Limit == 0)
+            if (!productRequest.Limit.HasValue)
                 productRequest.Limit = 10;
 
+            if (!productRequest.Offset.HasValue)
+                productRequest.Offset = 0;
+
             return await dataContext.Products
-                .Skip(productRequest.Offset)
-                .Take(productRequest.Limit)
+                .Skip(productRequest.Offset.Value)
+                .Take(productRequest.Limit.Value)
                 .ToListAsync();
         }
 

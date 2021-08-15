@@ -32,7 +32,7 @@ namespace ShopBridge.API.Controllers
         }
 
         /// <summary>
-        /// Get Products - Default limit for products is 10
+        /// Get Products - Default min limit for products is 10 and max is 5000
         /// </summary>
         /// <param name="productRequest">Product Request Param</param>
         /// <returns>Products list</returns>
