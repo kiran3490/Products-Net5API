@@ -1,9 +1,0 @@
-
-
-**/bin/
-**/bin/Debug/
-**/bin/Release/
-
-../PublishProfiles/
-
-.vs
