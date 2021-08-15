@@ -12,7 +12,9 @@ using ShopBridge.API.Model;
 using ShopBridge.API.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ShopBridge.API
@@ -40,9 +42,25 @@ namespace ShopBridge.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShopBridge.API", Version = "v1" });
-            });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "ShopBridge.API",
+                    Version = "v1",
+                    Description = "Shop Bridge Product Inventory System",
+                    Contact = new OpenApiContact()
+                    {
+                        Name = "Kirankumar Chauhan",
+                        Email = "kiran3490@yahoo.com",
+                        Url = new Uri("https://github.com/kiran3490")
+                    },
+                    License = new OpenApiLicense() { Url = new Uri("https://opensource.org/licenses/CDDL-1.0") }
+                });
 
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

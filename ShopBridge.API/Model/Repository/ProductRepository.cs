@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ShopBridge.API.Request;
 
 namespace ShopBridge.API.Model.Repository
 {
@@ -26,9 +27,19 @@ namespace ShopBridge.API.Model.Repository
             return await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<Product>> GetProducts(ProductRequest productRequest)
         {
-            return await dataContext.Products.ToListAsync();
+            if (productRequest == null)
+                productRequest = new ProductRequest();
+
+            //default value for limit 10 and offeset 0
+            if (productRequest.Limit == 0)
+                productRequest.Limit = 10;
+
+            return await dataContext.Products
+                .Skip(productRequest.Offset)
+                .Take(productRequest.Limit)
+                .ToListAsync();
         }
 
         public async Task<Product> UpdateProduct(Product product)

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShopBridge.API</name>
+    </assembly>
+    <members>
+        <member name="T:ShopBridge.API.Controllers.ProductsController">
+            <summary>
+            Products Web API
+            </summary>
+        </member>
+        <member name="M:ShopBridge.API.Controllers.ProductsController.GetProducts(ShopBridge.API.Request.ProductRequest)">
+            <summary>
+            Get Products
+            </summary>
+            <param name="productRequest">Product Request Param</param>
+            <returns>Products list</returns>
+        </member>
+        <member name="M:ShopBridge.API.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Get Product by Id
+            </summary>
+            <param name="id">Id of product</param>
+            <returns>Product details for given product id</returns>
+        </member>
+        <member name="M:ShopBridge.API.Controllers.ProductsController.SaveProduct(ShopBridge.API.Model.Product)">
+            <summary>
+            Save product
+            </summary>
+            <param name="product">product to be saved</param>
+            <returns>Saved product</returns>
+        </member>
+        <member name="M:ShopBridge.API.Controllers.ProductsController.UpdateProduct(System.Int32,ShopBridge.API.Model.Product)">
+            <summary>
+            Update product
+            </summary>
+            <param name="id">product id</param>
+            <param name="product">update product object</param>
+            <returns>Updated product</returns>
+        </member>
+        <member name="M:ShopBridge.API.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete product
+            </summary>
+            <param name="id">product id</param>
+            <returns>Ok if product deleted</returns>
+        </member>
+        <member name="T:ShopBridge.API.Request.ProductRequest">
+            <summary>
+            Product request parameters
+            </summary>
+        </member>
+        <member name="P:ShopBridge.API.Request.ProductRequest.Limit">
+            <summary>
+            Limit for products
+            </summary>
+        </member>
+        <member name="P:ShopBridge.API.Request.ProductRequest.Offset">
+            <summary>
+            Offset for product
+            </summary>
+        </member>
+    </members>
+</doc>

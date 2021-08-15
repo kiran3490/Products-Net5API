@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShopBridge.API.Model;
 using ShopBridge.API.Model.Repository;
+using ShopBridge.API.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,18 @@ using System.Threading.Tasks;
 
 namespace ShopBridge.API.Controllers
 {
+
+    /// <summary>
+    /// Products Web API
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
         private IProductRepository productRepository;
         private readonly ILogger<ProductsController> logger;
+
+
         public ProductsController(IProductRepository _productRepository
             , ILogger<ProductsController> _logger
             )
@@ -24,19 +31,36 @@ namespace ShopBridge.API.Controllers
             this.logger = _logger; 
         }
 
+        /// <summary>
+        /// Get Products - Default limit for products is 10
+        /// </summary>
+        /// <param name="productRequest">Product Request Param</param>
+        /// <returns>Products list</returns>
         [HttpGet]
-        public async Task<ActionResult> GetProducts()
+        public async Task<ActionResult> GetProducts([FromQuery]ProductRequest productRequest)
         {
             logger.LogInformation("Get Products Requested");
-            return Ok(await productRepository.GetProducts());
+            return Ok(await productRepository.GetProducts(productRequest));
         }
 
+
+        /// <summary>
+        /// Get Product by Id
+        /// </summary>
+        /// <param name="id">Id of product</param>
+        /// <returns>Product details for given product id</returns>
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetProduct(int id)
         {
             return Ok(await productRepository.GetProduct(id));
         }
 
+
+        /// <summary>
+        /// Save product
+        /// </summary>
+        /// <param name="product">product to be saved</param>
+        /// <returns>Saved product</returns>
         [HttpPost]
         public async Task<ActionResult> SaveProduct(Product product)
         {
@@ -49,6 +73,12 @@ namespace ShopBridge.API.Controllers
                 new { id = newEntry.Id }, newEntry);
         }
 
+        /// <summary>
+        /// Update product
+        /// </summary>
+        /// <param name="id">product id</param>
+        /// <param name="product">update product object</param>
+        /// <returns>Updated product</returns>
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
         {
@@ -63,6 +93,11 @@ namespace ShopBridge.API.Controllers
             return await productRepository.UpdateProduct(product);
         }
 
+        /// <summary>
+        /// Delete product
+        /// </summary>
+        /// <param name="id">product id</param>
+        /// <returns>Ok if product deleted</returns>
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
